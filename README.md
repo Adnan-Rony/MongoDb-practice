@@ -1,3 +1,5 @@
+# **Practice-tasks-1:**
+
 > 1.Find all documents in the collection where the age is greater than 30, and
 only return the name and email fields.
 > 
@@ -18,7 +20,7 @@ db.test.find(
 > 3. Find all documents where the skill is an empty array.
 > 
 
-```json
+```jsx
 db.test.find(
 {skills:{$type: "null"}}
 ).project({skills:1})
