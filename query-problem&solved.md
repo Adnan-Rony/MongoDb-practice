@@ -18,7 +18,7 @@ db.test.find(
 > 3. Find all documents where the skill is an empty array.
 > 
 
-```json
+```jsx
 db.test.find(
 {skills:{$type: "null"}}
 ).project({skills:1})
