@@ -10,7 +10,7 @@
 
 ## **Field Filtering:**
 
-```json
+```jsx
 db.test.find({"gender" : "Female"},{name:1}) //gender Female releted filter but only name value are show
 db.test.find({"gender" : "Female"},).project({name:1})
 ```
@@ -46,7 +46,7 @@ db.test.find({age: {$gt:18 }})
 
 only show ≥18 age of datas.also sorting accending order
 
-```json
+```jsx
 db.test.find({age: {$gte:18 }}).sort({ age:1 })
 ```
 
@@ -54,7 +54,7 @@ db.test.find({age: {$gte:18 }}).sort({ age:1 })
 
 when we filter any range of number 
 
-```json
+```jsx
 db.test.find({age:{$gt:18,$lt: 30}},{age:1}).sort({ age:-1 })
 //many datas filter
 db.test.find({ gender:"Female",age:{$gt:18,$lt: 30} },{age:1,gender:1}).sort({ age:-1 })
@@ -62,7 +62,7 @@ db.test.find({ gender:"Female",age:{$gt:18,$lt: 30} },{age:1,gender:1}).sort({ a
 
 ### $in:
 
-```
+```jsx
  db.test.find({
 gender: "Female",
 age: { $nin: [18, 20, 22, 26] },
@@ -75,7 +75,7 @@ interests:{$in: ["Cooking","Gamming"]}
 
 ### **Explicit $And:**
 
-```
+```jsx
 db.test.find({$and: [
     {age: {$ne:17}},
     {age: {$lte:30}},
@@ -87,7 +87,7 @@ db.test.find({$and: [
 
 ### **Explicit $or: same work of** $in:
 
-```json
+```jsx
 db.test.find({$or:[
 {"[skills.name](http://skills.name/)":"JAVASCRIPT"},
 {"[skills.name](http://skills.name/)":"python"}
@@ -98,13 +98,13 @@ db.test.find({"interests":{$in: ["Cooking","Gamming"]}}).project({"interests":1}
 
 ### **$Exists:**
 
-```json
+```jsx
 db.test.find({skills:{$exists: true}}).sort({skills:1})
 ```
 
 ### **$Type:**
 
-```json
+```jsx
 db.test.find({age:{$type: "number"}}).sort({skills:1})
 //null
 db.test.find({company:{$type: "null"}}).project({company:1})
@@ -114,7 +114,7 @@ db.test.find({friends:{$size:  4}}).project({friends:1})
 
 ### Position of array:
 
-```json
+```jsx
 
 db.test.find({"interests.2":"Cooking"}).project({interests:1})
 //output
@@ -125,7 +125,7 @@ db.test.find({interests: {$all:[ "Travelling", "Reading", "Cooking" ]}}).project
 
 ### **$ElemMatch:**
 
-```graphql
+```jsx
 
 db.test.find({
     skills:{$elemMatch: {
@@ -138,7 +138,7 @@ db.test.find({
 
 ### update Filed:**$Set**
 
-```json
+```jsx
 //
 db.test.updateOne(
 {which property update },
@@ -157,7 +157,7 @@ db.test.updateOne(
 
 ### **$AddToSet: update likes array**
 
-```json
+```jsx
 db.test.updateOne(
 { _id: ObjectId("6406ad65fc13ae5a400000c7") },
 {
@@ -170,7 +170,7 @@ interests : [ "Gamingg", ]
 
 ### $each:Push the value of array
 
-```json
+```jsx
 //duplicate value not push in array
 db.test.updateOne(
 { _id: ObjectId("6406ad65fc13ae5a400000c7") },
@@ -197,7 +197,7 @@ interests : {$each: [ "Gaminggg",  ]}
 
 ### $unset:any fied remove
 
-```tsx
+```jsx
 db.test.updateOne(
 {	_id : ObjectId("6406ad65fc13ae5a400000c7")},
 {$unset: { birthday:"" } }
@@ -208,7 +208,7 @@ db.test.updateOne(
 
 ### **$Pop:delete last element of target field**
 
-```tsx
+```jsx
 db.test.updateOne(
 {	_id : ObjectId("6406ad65fc13ae5a400000c7")},
 {$pop: { friends:1} }
@@ -219,7 +219,7 @@ db.test.updateOne(
 
 ### $pull:
 
-```tsx
+```jsx
 db.test.updateOne(
 {	_id : ObjectId("6406ad65fc13ae5a400000c7")},
 {$pull: { friends:"Najmus Sakib"} }
@@ -230,7 +230,7 @@ db.test.updateOne(
 
 ### **$PullAll:**
 
-```json
+```jsx
 db.test.updateOne(
 {	_id : ObjectId("6406ad65fc13ae5a400000c7")},
 {$pullAll: { friends:[ "Fahim Ahammed Firoz", "Rasel Ahmed" ]} }
@@ -241,7 +241,7 @@ opkewf0-iewflkdsflfo
 
 ### **Delete Documents:**
 
-```json
+```jsx
 //delete one documents.
 db.test.deleteOne({_id:ObjectId("6406ad65fc13ae5a400000c7")})
 ```
